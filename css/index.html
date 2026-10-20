@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche de Révision CC1 - MCD & SI</title>
+    <!-- Polices Virtuelles / Cyberpunk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Feuille de style externe -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Fiche de Révision CC1</h1>
+        <div class="subtitle">MCD, MERISE & Conception des SI // Cours 1 à 5</div>
+    </header>
+
+    <div class="grid-layout">
+
+        <!-- SECTION 0: GUIDE DÉBUTANT (GESTION DE BDD) -->
+        <div class="card">
+            <h2>Guide de Survie : Débuter en Gestion de BDD</h2>
+            <p>Si vous découvrez la conception de bases de données, ces repères fondamentaux vous permettront d'acquérir les bons réflexes :</p>
+            
+            <div class="grid-2">
+                <div>
+                    <h3>1. Qu'est-ce qu'une BDD & un SGBD ?</h3>
+                    <ul>
+                        <li><strong>Base de Données :</strong> Un espace centralisé et structuré qui stocke l'information de l'entreprise <span class="badge">sans doublon inutile</span>.</li>
+                        <li><strong>SGBD (ex: PostgreSQL, MySQL) :</strong> Le logiciel qui gère, sécurise et interroge la base.</li>
+                        <li><strong>La règle d'or :</strong> <em>« Une base mal conçue ne se rattrape pas par du code. »</em> D'où l'importance cruciale de concevoir avant de coder.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>2. Méthode pas à pas pour un MCD</h3>
+                    <ul>
+                        <li><strong>Étape 1 : Le Dictionnaire.</strong> Lister toutes les données brutes de l'énoncé, repérer et éliminer les doublons et les valeurs calculées.</li>
+                        <li><strong>Étape 2 : Les Entités.</strong> Identifier les objets ou personnes clés (ex: Client, Produit).</li>
+                        <li><strong>Étape 3 : Les Identifiants.</strong> Trouver ou créer une clé unique et stable (ex: <code>num_client</code>).</li>
+                        <li><strong>Étape 4 : Les Liens.</strong> Poser les associations et cardinalités.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: MODALITÉS DU CC1 -->
+        <div class="card warning-card">
+            <h2>Modalités & Consignes du CC1</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Format & Structure</h3>
+                    <ul>
+                        <li><strong>Durée :</strong> 1h | Individuel | <span class="badge badge-amber">Sans document</span> sur papier.</li>
+                        <li><strong>QCM (12 pts) :</strong> Barème à pénalités (le nombre de bonnes réponses n'est pas indiqué).</li>
+                        <li><strong>Questions Ouvertes (4 x 2 pts) :</strong>
+                            <ul>
+                                <li>Compléter un MCD</li>
+                                <li>Lire un MCD</li>
+                                <li>Corriger un MCD fautif</li>
+                                <li>Dessiner une CIF & un identifiant relatif</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Règles de Tracé & Correction</h3>
+                    <ul>
+                        <li><span class="badge">Entité</span> : Rectangles (identifiant souligné).</li>
+                        <li><span class="badge badge-purple">Association</span> : Ovales + cardinalités très lisibles.</li>
+                        <li><strong>Justification obligatoire :</strong> Chaque cardinalité ou choix doit se justifier en <u>une phrase de l'énoncé</u>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: MERISE ET DICTIONNAIRE -->
+        <div class="card">
+            <h2>MERISE & Dictionnaire de Données</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Niveau</th>
+                            <th>Question Clé</th>
+                            <th>Modèle Produit</th>
+                            <th>Séquence Cours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge">Conceptuel</span></td>
+                            <td>Quoi stocker ?</td>
+                            <td><strong>MCD</strong> (Entités, Associations)</td>
+                            <td>Séances 2 à 4</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-purple">Logique</span></td>
+                            <td>Comment l'organiser en tables ?</td>
+                            <td><strong>MLD</strong> (Relations, Clés)</td>
+                            <td>Séances 6 & 7</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-amber">Physique</span></td>
+                            <td>Avec quel SGBD ?</td>
+                            <td><strong>MPD</strong> (Script SQL)</td>
+                            <td>Séance 7</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Classification des données (Dictionnaire)</h3>
+            <ul>
+                <li><strong>Donnée Élémentaire :</strong> Information brute, non déductible (ex: <code>date_commande</code>). <span class="badge">À conserver</span></li>
+                <li><strong>Donnée Calculée :</strong> Déductible à partir d'autres données (ex: <code>total_commande</code>). <span class="badge badge-red">À exclure du MCD</span></li>
+                <li><strong>Donnée Redondante :</strong> Même information sous deux noms différents. <span class="badge badge-amber">N'en garder qu'une</span></li>
+            </ul>
+        </div>
+
+        <!-- SECTION 3: NOTATIONS DE BASE MCD -->
+        <div class="card">
+            <h2>Notations de Base du MCD</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Concepts Fondamentaux</h3>
+                    <ul>
+                        <li><strong>Entité / Occurrence :</strong> Regroupement d'objets de même nature / exemplaire précis.</li>
+                        <li><strong>Identifiant :</strong> Propriété unique, toujours renseignée et stable, <span class="badge">soulignée</span>.</li>
+                        <li><strong>Atomicités :</strong> Propriétés non décomposables (ex: séparer nom et prénom).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Lecture des Cardinalités</h3>
+                    <p><em>« Pour UNE occurrence de A, combien de fois participe-t-elle au minimum et au maximum à l'association ? »</em></p>
+                    <ul>
+                        <li><code>0,1</code> : Facultatif, au plus une fois</li>
+                        <li><code>1,1</code> : Obligatoire, exactement une fois</li>
+                        <li><code>0,N</code> : Facultatif, plusieurs fois</li>
+                        <li><code>1,N</code> : Obligatoire, au moins une fois</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                Règle de validation par phrase :<br>
+                « Une occurrence de [Entité A] [VERBE] au minimum [Min] et au maximum [Max] occurrences de [Entité B]. »
+            </div>
+        </div>
+
+        <!-- SECTION 4: ASSOCIATIONS AVANCÉES & EXTENSIONS -->
+        <div class="card">
+            <h2>Associations Avancées & Extensions MERISE</h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Structure / Notation</th>
+                            <th>Règle & Question à se poser</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Association Porteuse</strong></td>
+                            <td>Ovale contenant des propriétés</td>
+                            <td><em>« Cette propriété dépend-elle de la réunion des entités ? »</em> (ex: <code>quantite</code> ou <code>nb_personnes</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Association Ternaire</strong></td>
+                            <td>Ovale reliant 3 entités simultanément</td>
+                            <td>Le fait modélisé nécessite les 3 entités ensemble (ex: Livreur + Zone + Créneau).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Association Réflexive</strong></td>
+                            <td>Ovale rebouclant sur la même entité</td>
+                            <td>Associe une entité à elle-même. <strong>Exige des rôles sur chaque patte</strong> (ex: <code>[parrain]</code> / <code>[filleul]</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Identifiant Relatif</strong></td>
+                            <td>Cardinalité <span class="badge badge-purple"><u>1,1</u></span> soulignée (DF)</td>
+                            <td>L'identifiant n'est unique qu'au sein de l'entité parente (ex: Emplacement dans sa Zone, Plat dans son Restaurant)[cite: 1].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contrainte (CIF)</strong></td>
+                            <td>Cercle avec flèche orientée</td>
+                            <td>S'applique sur une n-aire pour indiquer qu'une combinaison de pattes détermine de façon unique la patte fléchée[cite: 1].</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 5: ETUDE DE CAS CAMPING -->
+        <div class="card">
+            <h2>Étude Pratique : Le Mini-Cas Camping</h2>
+            <p>Application concrète combinant identifiant relatif, association porteuse et réflexive :</p>
+            <pre><code>ZONE: code, nom
+DF, 11 ZONE, 1N EMPLACEMENT
+EMPLACEMENT: num, surface, electricite
+EQUIPER, 0N EMPLACEMENT, 0N EQUIPEMENT
+EQUIPEMENT: code, libelle
+
+CLIENT: num, nom, email
+EFFECTUER, 0N CLIENT, 11 RESERVATION
+RESERVATION: num, date_arrivee, date_depart
+PORTER SUR, 0N RESERVATION, 1N EMPLACEMENT, nb_personnes
+
+PARRAINER, 0N [parrain] CLIENT, 01 [filleul] CLIENT, date_parrainage</code></pre>
+        </div>
+
+        <!-- SECTION 6: CATALOGUE DES ERREURS & PIÈGES CC1 -->
+        <div class="card danger-card">
+            <h2>Catalogue des Erreurs à Éviter au CC1</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Erreurs sur les Propriétés</h3>
+                    <ul>
+                        <li><span class="badge badge-red">Propriété calculée</span> : Total, âge, nombre de... (administrativement supprimée)[cite: 1].</li>
+                        <li><span class="badge badge-red">Propriété dupliquée</span> : Mettre la même information à deux endroits[cite: 1].</li>
+                        <li><span class="badge badge-red">Propriété non atomique</span> : Champ <code>adresse_complete</code> au lieu de séparer les composants[cite: 1].</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Erreurs de Modélisation</h3>
+                    <ul>
+                        <li><span class="badge badge-red">Cardinalité inversée</span> : Mal lire le sens des cardinalités[cite: 1].</li>
+                        <li><span class="badge badge-red">Oubli d'identifiant relatif</span> : Numéro unique dans son parent modélisé comme un identifiant global[cite: 1].</li>
+                        <li><span class="badge badge-red">Absence de justification</span> : Répondre sans citer la phrase exacte de l'énoncé.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: QCM D'ENTRAÎNEMENT INTERACTIF -->
+        <div class="card">
+            <h2>Section 7 : QCM d'Entraînement Dynamique (20+ Questions)</h2>
+            <p>Testez vos connaissances sur l'ensemble du cours. Vous pouvez changer les questions, afficher le corrigé ou valider vos réponses en bas.</p>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; align-items: center;">
+                <button type="button" class="btn-qcm btn-secondary" onclick="genererNouvellesQuestions()">Changer / Mélanger les questions</button>
+                <button type="button" class="btn-qcm btn-amber" onclick="afficherCorrectionDirecte()">Afficher / Masquer le corrigé</button>
+            </div>
+
+            <!-- Conteneur des questions générées dynamiquement -->
+            <div id="qcm-container"></div>
+
+            <!-- Bouton valider et résultat positionnés en bas -->
+            <div style="margin-top: 25px; display: flex; flex-direction: column; gap: 15px; align-items: flex-start;">
+                <button type="button" class="btn-qcm" onclick="validerReponses()">Valider mes réponses</button>
+                <div id="score-result" style="font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: #ff007f; font-weight: 700;"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        SYSTÈME DE RÉVISION EN LIGNE // MERISE MCD // SÉANCES 1 À 5
+    </footer>
+
+</div>
+
+<script>
+    // Banque globale d'au moins 22 questions basées sur le cours
+    const banqueQuestions = [
+        {
+            q: "1. Que faut-il faire d'une donnée calculée (ex: total_commande) dans le dictionnaire de données pour le MCD ?",
+            options: [
+                "La conserver en tant que propriété d'entité",
+                "L'exclure impérativement du MCD",
+                "La placer systématiquement dans une association porteuse"
+            ],
+            correct: 1,
+            explication: "Les données calculées (ex: total, âge, nombre de...) doivent être totalement éliminées du MCD[cite: 1]."
+        },
+        {
+            q: "2. À quel niveau de la méthode Merise répond-on à la question « Comment l'organiser en tables ? » ?",
+            options: [
+                "Niveau Conceptuel (MCD)",
+                "Niveau Logique (MLD)",
+                "Niveau Physique (MPD)"
+            ],
+            correct: 1,
+            explication: "Le MLD (Modèle Logique de Données) permet d'organiser les données en tables, relations et clés."
+        },
+        {
+            q: "3. Quelle est la règle indispensable pour une association réflexive dans un MCD ?",
+            options: [
+                "Elle doit être reliée à 3 entités simultanément",
+                "Elle exige d'inscrire des rôles sur chaque patte (ex: [parrain] / [filleul])",
+                "Elle a obligatoirement une cardinalité 1,1 soulignée"
+            ],
+            correct: 1,
+            explication: "Une association réflexive relie une entité à elle-même et exige de préciser les rôles sur les pattes."
+        },
+        {
+            q: "4. Comment matérialise-t-on un identifiant relatif sur un MCD ?",
+            options: [
+                "Par un cercle contenant une flèche orientée (CIF)",
+                "Par une cardinalité 1,1 soulignée (DF)",
+                "Par des lettres en majuscules dans l'ovale"
+            ],
+            correct: 1,
+            explication: "L'identifiant relatif se représente par une cardinalité 1,1 soulignée reliée à l'entité parente[cite: 1]."
+        },
+        {
+            q: "5. Que signifie la cardinalité 0,1 dans un MCD ?",
+            options: [
+                "Facultatif, au moins une fois",
+                "Facultatif, au plus une fois",
+                "Obligatoire, exactement une fois"
+            ],
+            correct: 1,
+            explication: "0,1 signifie que l'occurrence participe au minimum 0 fois (facultatif) et au maximum 1 fois."
+        },
+        {
+            q: "6. Quelle forme géométrique sert à représenter une Entité dans un MCD ?",
+            options: [
+                "Un ovale",
+                "Un rectangle avec le nom en haut et l'identifiant souligné",
+                "Un losange avec des bordures renégociées"
+            ],
+            correct: 1,
+            explication: "Une entité se trace sous forme de rectangle contenant son nom, son identifiant souligné et ses propriétés."
+        },
+        {
+            q: "7. Une propriété de type `adresse_complete` (rue, CP, ville regroupés) viole quelle règle du MCD ?",
+            options: [
+                "La règle de non-redondance",
+                "La règle d'atomicité des propriétés",
+                "La règle de justification par l'énoncé"
+            ],
+            correct: 1,
+            explication: "Les propriétés doivent être atomiques (non décomposables). Il faut donc séparer rue, code postal et ville[cite: 1]."
+        },
+        {
+            q: "8. Où doit-on placer une propriété qui dépend directement de la réunion de deux entités (ex: quantité commandée) ?",
+            options: [
+                "Dans l'entité Commande",
+                "Dans une association porteuse reliant les deux entités",
+                "Dans un identifiant relatif"
+            ],
+            correct: 1,
+            explication: "Lorsqu'une propriété dépend de l'association de deux entités, elle est portée par l'ovale d'association."
+        },
+        {
+            q: "9. Que signifie la cardinalité 1,N dans un MCD ?",
+            options: [
+                "Obligatoire, au moins une fois",
+                "Facultatif, plusieurs fois",
+                "Obligatoire, au plus une fois"
+            ],
+            correct: 0,
+            explication: "1,N indique que la participation est obligatoire (minimum 1) et peut se répéter (maximum N)."
+        },
+        {
+            q: "10. Quel est le format d'évaluation du CC1 concernant la partie QCM ?",
+            options: [
+                "Un QCM à choix simple sans aucune pénalité",
+                "Un QCM avec barème à pénalités où le nombre de bonnes réponses n'est pas indiqué",
+                "Un QCM sur ordinateur avec réponse automatique"
+            ],
+            correct: 1,
+            explication: "Le CC1 comporte un QCM sur 12 points avec barème à pénalités (bonnes réponses non indiquées)."
+        },
+        {
+            q: "11. Lors du CC1, que faut-il systématiquement fournir pour justifier chaque cardinalité posée ?",
+            options: [
+                "Une formule mathématique",
+                "Une phrase exacte extraite de l'énoncé",
+                "Un schéma MLD complémentaire"
+            ],
+            correct: 1,
+            explication: "Chaque cardinalité ou choix de modélisation doit être justifié par une phrase de l'énoncé."
+        },
+        {
+            q: "12. Quelle est la fonction principale d'un SGBD (ex: PostgreSQL, MySQL) ?",
+            options: [
+                "Dessiner automatiquement le schéma MCD",
+                "Gérer, sécuriser et interroger la base de données",
+                "Rédiger l'énoncé des besoins de l'entreprise"
+            ],
+            correct: 1,
+            explication: "Le SGBD est le logiciel applicatif qui stocke, sécurise, administre et permet d'interroger la BDD."
+        },
+        {
+            q: "13. Quelle est la toute première étape de la méthode pas à pas pour réaliser un MCD ?",
+            options: [
+                "Tracer directement les ovales d'association",
+                "Établir le dictionnaire de données et nettoyer doublons/calculs",
+                "Définir le script SQL"
+            ],
+            correct: 1,
+            explication: "La première étape consiste à lister les données brutes dans le dictionnaire et à éliminer calculs et redondances."
+        },
+        {
+            q: "14. Qu'est-ce qu'une Contrainte d'Informativité / Contrainte d'Intégrité Fonctionnelle (CIF) ?",
+            options: [
+                "Un rectangle entourant deux entités",
+                "Un cercle avec une flèche orientée indiquant qu'une combinaison de pattes détermine de façon unique la patte fléchée",
+                "Une propriété soulignée dans une entité"
+            ],
+            correct: 1,
+            explication: "Une CIF se matérialise par un cercle et une flèche orientée sur une association n-aire[cite: 1]."
+        },
+        {
+            q: "15. Le Modèle Physique de Données (MPD) correspond à quel niveau de réponse ?",
+            options: [
+                "Quoi stocker ?",
+                "Comment l'organiser en tables ?",
+                "Avec quel SGBD / Script SQL concret ?"
+            ],
+            correct: 2,
+            explication: "Le MPD concrétise la base au niveau physique sous la forme d'un script SQL adapté au SGBD choisi."
+        },
+        {
+            q: "16. Comment doit être l'identifiant d'une entité dans un MCD ?",
+            options: [
+                "Facultatif et modifiable au cours du temps",
+                "Unique, toujours renseigné, stable et souligné",
+                "Toujours composé de deux mots avec un espace"
+            ],
+            correct: 1,
+            explication: "L'identifiant doit obligatoirement être unique pour chaque occurrence, stable dans le temps et souligné."
+        },
+        {
+            q: "17. Dans l'étude de cas Camping, la relation entre ZONE et EMPLACEMENT utilise un identifiant relatif car :",
+            options: [
+                "L'emplacement est identifié de façon unique uniquement au sein de sa Zone (ex: Numéro 12 de la Zone A)",
+                "L'emplacement a un numéro universel unique dans le monde entier",
+                "La zone n'a pas de nom"
+            ],
+            correct: 0,
+            explication: "Un identifiant est relatif lorsque le numéro d'emplacement n'a de sens qu'à l'intérieur de sa zone parente[cite: 1]."
+        },
+        {
+            q: "18. Que risque-t-on si une base de données est mal conçue au départ ?",
+            options: [
+                "Rien, le code applicatif peut corriger facilement les erreurs de structure",
+                "Une base mal conçue ne se rattrape pas par du code (doublons, incohérences)",
+                "Le SGBD va réécrire le MCD automatiquement"
+            ],
+            correct: 1,
+            explication: "Comme le rappelle la règle d'or : une base mal conçue ne se rattrape pas par du code."
+        },
+        {
+            q: "19. Qu'est-ce qu'une association ternaire ?",
+            options: [
+                "Une association qui contient 3 propriétés",
+                "Une association dont le schéma relie 3 entités simultanément",
+                "Une association avec 3 cardinalités identiques"
+            ],
+            correct: 1,
+            explication: "Une association ternaire lie simultanément trois entités pour modéliser un fait unique."
+        },
+        {
+            q: "20. Quelle est la cardinalité associée à une participation facultative répétée ?",
+            options: [
+                "1,1",
+                "0,N",
+                "1,N"
+            ],
+            correct: 1,
+            explication: "0,N indique que la participation peut ne pas exister (0) ou se produire plusieurs fois (N)."
+        },
+        {
+            q: "21. Quelle est l'erreur fréquente consistant à mettre la même information à deux endroits du MCD ?",
+            options: [
+                "Une propriété calculée",
+                "Une propriété dupliquée / redondante",
+                "Une cardinalité inversée"
+            ],
+            correct: 1,
+            explication: "Conserver la même donnée dans deux entités différentes crée une redondance indésirable[cite: 1]."
+        },
+        {
+            q: "22. Comment lit-on la question clé d'une cardinalité entre Entité A et Entité B ?",
+            options: [
+                "Pour TOUTES les occurrences de A, combien d'occurrences de B existent ?",
+                "Pour UNE occurrence de A, combien de fois participe-t-elle au minimum et au maximum à l'association ?",
+                "Combien d'entités au total comporte le schéma ?"
+            ],
+            correct: 1,
+            explication: "La question fondamentale est : « Pour UNE occurrence de A, combien de fois participe-t-elle au min et au max ? »."
+        }
+    ];
+
+    let questionsActuelles = [];
+    let correctionAffichee = false;
+
+    function melanger(array) {
+        let copy = [...array];
+        for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+    }
+
+    function genererNouvellesQuestions() {
+        const melangees = melanger(banqueQuestions);
+        questionsActuelles = melangees.slice(0, 10);
+        correctionAffichee = false;
+        
+        afficherQuestions();
+        document.getElementById('score-result').innerHTML = '';
+    }
+
+    function afficherQuestions() {
+        const container = document.getElementById('qcm-container');
+        let html = '';
+
+        questionsActuelles.forEach((qObj, index) => {
+            html += `
+                <div class="card" style="margin-bottom: 20px;" id="q-box-${index}">
+                    <h3 style="margin-top: 0;">${index + 1}. ${qObj.q}</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+                        ${qObj.options.map((opt, optIdx) => `
+                            <label style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer;">
+                                <input type="radio" name="q_${index}" value="${optIdx}">
+                                <span>${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div id="q-feedback-${index}" style="margin-top: 12px; padding: 12px; border-radius: 6px; display: none;"></div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    function validerReponses() {
+        let score = 0;
+        let total = questionsActuelles.length;
+
+        questionsActuelles.forEach((qObj, index) => {
+            const options = document.getElementsByName(`q_${index}`);
+            const feedbackDiv = document.getElementById(`q-feedback-${index}`);
+            let selVal = -1;
+
+            for (let opt of options) {
+                if (opt.checked) {
+                    selVal = parseInt(opt.value);
+                    break;
+                }
+            }
+
+            feedbackDiv.style.display = 'block';
+            if (selVal === qObj.correct) {
+                score++;
+                feedbackDiv.className = 'correct';
+                feedbackDiv.innerHTML = `<strong>Correct !</strong> ${qObj.explication}`;
+            } else {
+                feedbackDiv.className = 'incorrect';
+                if (selVal === -1) {
+                    feedbackDiv.innerHTML = `<strong>Non répondu.</strong> La bonne réponse était : <em>${qObj.options[qObj.correct]}</em>.<br>${qObj.explication}`;
+                } else {
+                    feedbackDiv.innerHTML = `<strong>Incorrect.</strong> La bonne réponse était : <em>${qObj.options[qObj.correct]}</em>.<br>${qObj.explication}`;
+                }
+            }
+        });
+
+        const resultDiv = document.getElementById('score-result');
+        resultDiv.innerHTML = `Résultat : ${score} / ${total} réponses correctes (${Math.round((score/total)*100)}%).`;
+        correctionAffichee = true;
+    }
+
+    function afficherCorrectionDirecte() {
+        correctionAffichee = !correctionAffichee;
+
+        questionsActuelles.forEach((qObj, index) => {
+            const feedbackDiv = document.getElementById(`q-feedback-${index}`);
+            if (correctionAffichee) {
+                feedbackDiv.style.display = 'block';
+                feedbackDiv.className = 'info';
+                feedbackDiv.innerHTML = `<strong>Correction :</strong> <em>${qObj.options[qObj.correct]}</em>.<br>${qObj.explication}`;
+            } else {
+                feedbackDiv.style.display = 'none';
+            }
+        });
+    }
+
+    window.onload = function() {
+        genererNouvellesQuestions();
+    };
+</script>
+
+</body>
+</html>
